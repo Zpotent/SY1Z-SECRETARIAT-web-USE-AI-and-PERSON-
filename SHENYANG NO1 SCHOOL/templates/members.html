@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>团队成员 | 沈阳一中秘书部</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Appear.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <header>
+    <div class="parent title">
+      <img class="yzxh" src="{{ url_for('static', filename='img/syyzxiaohui.png') }}" alt="沈阳一中校徽">
+    </div>
+    
+    <div class="child title">
+      <div id="title1">沈阳市第一中学学生会秘书部</div>
+      <div id="title2">SY1Z SECRETARIAT</div>
+    </div>
+    
+    <nav>
+  <div class="transport">
+    <a href="{{ url_for('home') }}"><div class="nav-item">主页</div></a>
+    <a href="{{ url_for('about') }}"><div class="nav-item {% if request.endpoint == 'about' %}active{% endif %}">关于</div></a>
+    <a href="{{ url_for('members') }}"><div class="nav-item {% if request.endpoint == 'members' %}active{% endif %}">成员</div></a>
+    <a href="{{ url_for('reviews') }}"><div class="nav-item {% if request.endpoint == 'reviews' %}active{% endif %}">反馈</div></a>
+    
+    {% if 'user' in session %}
+      <!-- 已登录状态 -->
+      <div class="nav-user-dropdown">
+        <div class="nav-item username">
+          {{ session['user']['username'] }}
+          <div class="dropdown-content">
+            <a href="{{ url_for('profile') }}">个人主页</a>
+            <a href="{{ url_for('logout') }}">退出登录</a>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <!-- 未登录状态 -->
+      <a href="{{ url_for('signup') }}"><div class="nav-item {% if request.endpoint == 'signup' %}active{% endif %}">注册</div></a>
+      <a href="{{ url_for('signin') }}"><div class="nav-item {% if request.endpoint == 'signin' %}active{% endif %}">登录</div></a>
+    {% endif %}
+  </div>
+</nav>
+  </header>
+  
+  <main>
+    <div class="content-card">
+      <h1 class="text-center">OUR CREW</h1>
+      
+      <div class="divider"></div>
+      
+      <div class="grid-2">
+        <!-- 成员1 -->
+        <div class="member-card">
+          <div style="width: 120px; height: 120px; background: var(--gray-80); border-radius: 50%; margin: 0 auto 1rem;"></div>
+          <h3 class="text-center">赵铭阅</h3>
+          <p class="text-center" style="color: var(--accent); font-family: 'Space Mono', monospace;">部长</p>
+          <p class="text-center">随便写写</p>
+        </div>
+        
+        <!-- 成员2 -->
+        <div class="member-card">
+          <div style="width: 120px; height: 120px; background: var(--gray-80); border-radius: 50%; margin: 0 auto 1rem;"></div>
+          <h3 class="text-center">王梓衡</h3>
+          <p class="text-center" style="color: var(--accent); font-family: 'Space Mono', monospace;">副部长</p>
+          <p class="text-center">随便写写</p>
+        </div>
+        
+        <!-- 成员3 -->
+        <div class="member-card">
+          <div style="width: 120px; height: 120px; background: var(--gray-80); border-radius: 50%; margin: 0 auto 1rem;"></div>
+          <h3 class="text-center">王浩臣</h3>
+          <p class="text-center" style="color: var(--accent); font-family: 'Space Mono', monospace;">部员</p>
+          <p class="text-center">啥都想干</p>
+        </div>
+        
+        <!-- 成员4 -->
+        <div class="member-card">
+          <div style="width: 120px; height: 120px; background: var(--gray-80); border-radius: 50%; margin: 0 auto 1rem;"></div>
+          <h3 class="text-center">刘子健</h3>
+          <p class="text-center" style="color: var(--accent); font-family: 'Space Mono', monospace;">部员</p>
+          <p class="text-center">我不知道</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    © 2023 SY1Z SECRETARIAT. ALL RIGHTS RESERVED.
+  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.2, width: 1 },
+        move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out" }
+      }
+    });
+  </script>
+</body>
+</html>

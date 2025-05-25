@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沈阳市第一中学学生会秘书部</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Appear.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    /* 高级页面结构 */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    header {
+      padding: 2rem 5vw;
+      display: flex;
+      align-items: center;
+      background-color: rgba(0,0,0,0.8);
+      position: relative;
+      z-index: 10;
+    }
+    
+    main {
+      flex: 1;
+      padding: 3rem 5vw;
+      position: relative;
+    }
+    
+    /* 高级内容卡片 */
+    .content-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      backdrop-filter: blur(10px);
+    }
+    
+    /* 嘻哈风格分割线 */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+      margin: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <header>
+    <div class="parent title">
+      <img class="yzxh" src="{{ url_for('static', filename='img/syyzxiaohui.png') }}" alt="沈阳一中校徽">
+    </div>
+    
+    <div class="child title">
+      <div id="title1">沈阳市第一中学学生会秘书部</div>
+      <div id="title2">SY1Z SECRETARIAT</div>
+    </div>
+    
+    <nav>
+  <div class="transport">
+    <a href="{{ url_for('home') }}"><div class="nav-item">主页</div></a>
+    <a href="{{ url_for('about') }}"><div class="nav-item {% if request.endpoint == 'about' %}active{% endif %}">关于</div></a>
+    <a href="{{ url_for('members') }}"><div class="nav-item {% if request.endpoint == 'members' %}active{% endif %}">成员</div></a>
+    <a href="{{ url_for('reviews') }}"><div class="nav-item {% if request.endpoint == 'reviews' %}active{% endif %}">反馈</div></a>
+    
+    {% if 'user' in session %}
+      <!-- 已登录状态 -->
+      <div class="nav-user-dropdown">
+        <div class="nav-item username">
+          {{ session['user']['username'] }}
+          <div class="dropdown-content">
+            <a href="{{ url_for('profile') }}">个人主页</a>
+            <a href="{{ url_for('logout') }}">退出登录</a>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <!-- 未登录状态 -->
+      <a href="{{ url_for('signup') }}"><div class="nav-item {% if request.endpoint == 'signup' %}active{% endif %}">注册</div></a>
+      <a href="{{ url_for('signin') }}"><div class="nav-item {% if request.endpoint == 'signin' %}active{% endif %}">登录</div></a>
+    {% endif %}
+  </div>
+</nav>
+  </header>
+  
+  <main>
+    <div class="content-card">
+      <h2 style="font-family: 'Archivo Black', sans-serif; font-size: 1.8rem; margin-bottom: 1.5rem;">OUR MISSION</h2>
+      <div class="divider"></div>
+      <p style="font-size: 1.1rem; line-height: 1.8; color: var(--gray-20);">
+        我们以现代方式传承校园文化<br>
+        服务同学THE FIRST<br>
+        <span style="color: var(--white); font-weight: 700;">BLACK & WHITE BUT NOT BASIC</span>
+      </p>
+      
+      <div style="margin-top: 3rem;">
+        <a href="#" style="display: inline-block; border: 1px solid var(--white); padding: 0.8rem 2rem; font-family: 'Space Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.8rem;">了解更多 →</a>
+      </div>
+    </div>
+  </main>
+  
+  <footer style="padding: 2rem 5vw; text-align: center; font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--gray-80); border-top: 1px solid var(--gray-80);">
+    © 2023 SY1Z SECRETARIAT. ALL RIGHTS RESERVED.
+  </footer>
+  
+  <script>
+    // 高级粒子配置
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.2, width: 1 },
+        move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out" }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

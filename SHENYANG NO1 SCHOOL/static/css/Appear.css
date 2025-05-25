@@ -1,0 +1,297 @@
+/* 现代高级黑白嘻哈风格基础 */
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+  --gray-90: #111111;
+  --gray-80: #222222;
+  --gray-20: #CCCCCC;
+  --accent: #FF0000;
+}
+
+/* 字体导入 */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap');
+
+/* 基础样式 */
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: 'Noto Sans SC', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+* {
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 头部样式 */
+header {
+  padding: 2rem 5vw;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: rgba(0,0,0,0.8);
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid var(--gray-80);
+}
+
+/* 标题系统 */
+#title1 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: var(--white);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+#title1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--white);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+}
+
+#title1:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+#title2 {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  color: var(--gray-20);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* 校徽样式 */
+.parent.title {
+  margin-right: 30px;
+  position: relative;
+}
+
+.yzxh {
+  width: clamp(60px, 8vw, 80px);
+  height: clamp(60px, 8vw, 80px);
+  object-fit: contain;
+  filter: grayscale(100%) contrast(200%);
+  opacity: 0.9;
+  border: 1px solid var(--gray-20);
+  padding: 8px;
+}
+
+.yzxh:hover {
+  filter: grayscale(0%) contrast(100%);
+  opacity: 1;
+  border-color: var(--white);
+  transform: rotate(5deg) scale(1.05);
+}
+
+/* 导航系统 */
+.transport {
+  display: flex;
+  gap: clamp(10px, 2vw, 15px);
+  margin-left: auto;
+  padding: 10px 0;
+  border-top: 1px solid var(--gray-80);
+  border-bottom: 1px solid var(--gray-80);
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
+  color: var(--gray-20);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  position: relative;
+  padding: 5px 0;
+  text-decoration: none;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--white);
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover {
+  color: var(--white);
+}
+
+.nav-item:hover::before {
+  width: 100%;
+}
+
+.nav-item.active {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.nav-item.active::before {
+  width: 100%;
+  background: var(--accent);
+  height: 2px;
+}
+
+/* 主内容区 */
+main {
+  flex: 1;
+  padding: 3rem 5vw;
+  position: relative;
+}
+
+/* 内容卡片 */
+.content-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: clamp(1.5rem, 5vw, 2rem);
+  max-width: 1200px;
+  margin: 0 auto;
+  backdrop-filter: blur(10px);
+}
+
+/* 分割线 */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+  margin: clamp(1rem, 3vw, 2rem) 0;
+}
+
+/* 按钮样式 */
+.btn {
+  display: inline-block;
+  border: 1px solid var(--white);
+  padding: 0.8rem 2rem;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--white);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+}
+
+.btn:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+.btn-accent {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-accent:hover {
+  background: rgba(255,0,0,0.1);
+}
+
+/* 页脚 */
+footer {
+  padding: 2rem 5vw;
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gray-80);
+  border-top: 1px solid var(--gray-80);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .transport {
+    margin-left: 0;
+    margin-top: 2rem;
+    width: 100%;
+  }
+}
+
+/* 粒子背景 */
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* 实用类 */
+.text-center {
+  text-align: center;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+/* 用户下拉菜单样式 */
+.nav-user-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.username {
+  cursor: pointer;
+  color: var(--white) !important;
+  font-weight: 700;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: var(--gray-90);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border: 1px solid var(--gray-80);
+}
+
+.dropdown-content a {
+  color: var(--white);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.8rem;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--gray-80);
+}
+
+.nav-user-dropdown:hover .dropdown-content {
+  display: block;
+}

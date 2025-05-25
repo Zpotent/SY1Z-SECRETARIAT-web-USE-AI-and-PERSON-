@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我们 | 沈阳一中秘书部</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Appear.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <header>
+    <div class="parent title">
+      <img class="yzxh" src="{{ url_for('static', filename='img/syyzxiaohui.png') }}" alt="沈阳一中校徽">
+    </div>
+    
+    <div class="child title">
+      <div id="title1">沈阳市第一中学学生会秘书部</div>
+      <div id="title2">SY1Z SECRETARIAT</div>
+    </div>
+    
+    <nav>
+  <div class="transport">
+    <a href="{{ url_for('home') }}"><div class="nav-item">主页</div></a>
+    <a href="{{ url_for('about') }}"><div class="nav-item {% if request.endpoint == 'about' %}active{% endif %}">关于</div></a>
+    <a href="{{ url_for('members') }}"><div class="nav-item {% if request.endpoint == 'members' %}active{% endif %}">成员</div></a>
+    <a href="{{ url_for('reviews') }}"><div class="nav-item {% if request.endpoint == 'reviews' %}active{% endif %}">反馈</div></a>
+    
+    {% if 'user' in session %}
+      <!-- 已登录状态 -->
+      <div class="nav-user-dropdown">
+        <div class="nav-item username">
+          {{ session['user']['username'] }}
+          <div class="dropdown-content">
+            <a href="{{ url_for('profile') }}">个人主页</a>
+            <a href="{{ url_for('logout') }}">退出登录</a>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <!-- 未登录状态 -->
+      <a href="{{ url_for('signup') }}"><div class="nav-item {% if request.endpoint == 'signup' %}active{% endif %}">注册</div></a>
+      <a href="{{ url_for('signin') }}"><div class="nav-item {% if request.endpoint == 'signin' %}active{% endif %}">登录</div></a>
+    {% endif %}
+  </div>
+</nav>
+  </header>
+  
+  <main>
+    <div class="content-card">
+      <h1>关于秘书部</h1>
+      
+      <div class="divider"></div>
+      
+      <div class="grid-2">
+        <div>
+          <h2>我们的使命</h2>
+          <p>沈阳一中学生会秘书部致力于通过现代管理方式和创新思维，为学校师生提供高效服务。我们融合嘻哈文化的自由精神与学校管理的严谨态度，创造独特的校园文化。</p>
+        </div>
+        
+        <div>
+          <h2>工作内容</h2>
+          <p>1. 学生会文件管理与归档<br>
+          2. 会议记录与活动策划<br>
+          3. 校园文化宣传与推广<br>
+          4. 学生意见收集与反馈</p>
+        </div>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <div class="text-center">
+        <a href="members.html" class="btn">认识我们的团队</a>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    © 2023 SY1Z SECRETARIAT. ALL RIGHTS RESERVED.
+  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.2, width: 1 },
+        move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out" }
+      }
+    });
+  </script>
+</body>
+</html>

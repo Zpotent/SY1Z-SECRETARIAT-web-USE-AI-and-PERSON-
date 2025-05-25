@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录 | 沈阳一中秘书部</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Appear.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    /* 与注册页面完全相同的样式 */
+    .auth-container {
+      max-width: 450px;
+      margin: 2rem auto;
+      padding: 2.5rem;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .auth-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .auth-header h1 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 2rem;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    
+    .auth-header p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+    
+    .input-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    
+    .input-group i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+      font-size: 1rem;
+    }
+    
+    .input-group input {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 2.5rem;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: white;
+      font-family: 'Noto Sans SC', sans-serif;
+      transition: all 0.3s ease;
+    }
+    
+    .input-group input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+    
+    .input-group input::placeholder {
+      color: #64748b;
+    }
+    
+    .auth-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .remember-me {
+      display: flex;
+      align-items: center;
+      color: #94a3b8;
+    }
+    
+    .remember-me input {
+      margin-right: 0.5rem;
+      accent-color: #3b82f6;
+    }
+    
+    .forgot-password {
+      color: #3b82f6;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .forgot-password:hover {
+      color: #60a5fa;
+      text-decoration: underline;
+    }
+    
+    .auth-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Space Mono', monospace;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .auth-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .auth-footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+    
+    .auth-footer a {
+      color: #3b82f6;
+      font-weight: bold;
+      text-decoration: none;
+      margin-left: 0.5rem;
+      transition: color 0.2s;
+    }
+    
+    .auth-footer a:hover {
+      color: #60a5fa;
+      text-decoration: underline;
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 1.5rem 0;
+      color: #64748b;
+      font-size: 0.8rem;
+    }
+    
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 0 0.5rem;
+    }
+    
+    .auth-error {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid #ef4444;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #fecaca;
+    }
+    
+    .error-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background: #ef4444;
+      color: white;
+      border-radius: 50%;
+      margin-right: 0.8rem;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <header>
+    <div class="parent title">
+      <img class="yzxh" src="{{ url_for('static', filename='img/syyzxiaohui.png') }}" alt="沈阳一中校徽">
+    </div>
+    
+    <div class="child title">
+      <div id="title1">沈阳市第一中学学生会秘书部</div>
+      <div id="title2">SY1Z SECRETARIAT</div>
+    </div>
+    
+    <nav>
+      <div class="transport">
+        <a href="{{ url_for('home') }}"><div class="nav-item">主页</div></a>
+        <a href="{{ url_for('about') }}"><div class="nav-item">关于</div></a>
+        <a href="{{ url_for('members') }}"><div class="nav-item">成员</div></a>
+        <a href="{{ url_for('reviews') }}"><div class="nav-item">反馈</div></a>
+        <a href="{{ url_for('signup') }}"><div class="nav-item">注册</div></a>
+        <a href="{{ url_for('signin') }}"><div class="nav-item active">登录</div></a>
+      </div>
+    </nav>
+  </header>
+  
+  <main>
+    <div class="auth-container">
+      <div class="auth-header">
+        <h1>欢迎回来</h1>
+        <p>请登录您的账号以继续</p>
+      </div>
+      
+      {% if error %}
+      <div class="auth-error">
+        <i class="error-icon">!</i>
+        <span>{{ error }}</span>
+      </div>
+      {% endif %}
+      
+      <form method="POST" action="{{ url_for('signin') }}">
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" id="username" name="username" required placeholder="用户名">
+        </div>
+        
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" name="password" required placeholder="密码">
+        </div>
+        
+        <div class="auth-options">
+          <label class="remember-me">
+            <input type="checkbox" name="remember"> 记住我
+          </label>
+          <a href="#" class="forgot-password">忘记密码?</a>
+        </div>
+        
+        <button type="submit" class="auth-btn">
+          <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i> 登 录
+        </button>
+      </form>
+      
+      <div class="divider">或</div>
+      
+      <div class="auth-footer">
+        还没有账号? <a href="{{ url_for('signup') }}">立即注册</a>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    © 2023 SY1Z SECRETARIAT. ALL RIGHTS RESERVED.
+  </footer>
+  
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.2, width: 1 },
+        move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out" }
+      }
+    });
+  </script>
+</body>
+</html>
