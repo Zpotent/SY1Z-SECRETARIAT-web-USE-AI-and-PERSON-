@@ -1,1 +1,1 @@
-# SY1Z-SECRETARIAT-web-USE-AI-and-PERSON-
+这是由沈阳市第一中学秘书部的成员们所开发的，前端代码由AI生成，后端代码由学生编写
